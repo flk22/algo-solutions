@@ -7,12 +7,15 @@ def remove_parentheses(st):
     result = ""
     depth = 0
     for char in st:
-        depth += char == "("
-        if not depth:
-            result += char
-        depth -= char == ")"
+        if char == "(":
+            depth += 1
+        elif char == ")":
+            if depth > 0:
+                depth -= 1
+        else:
+            if depth == 0:
+                result += char
     return result
-
 
 char = "example(unwanted thing)example"
 print(remove_parentheses(char))
